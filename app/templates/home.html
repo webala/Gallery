@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <section class="overview">
+
+        <div class="social">
+            <ul>
+                <li><a href="#"><i class="uil uil-facebook-f"></i></a></li>
+                <li><a href="#"><i class="uil uil-twitter"></i></a></li>
+                <li><a href="#"><i class="uil uil-instagram"></i></a></li>
+            </ul>
+        </div>
+        <div class="introduction">
+            <img src="{{ url_for('static', filename='images/profile-avatar.jpg') }}" alt="profile-pic" class="profile-pic">
+            <div class="names">
+                <h1>James</h1>
+                <h3>Kagima</h3>
+                <p>Professional Artist</p>   
+            </div>
+        </div>
+
+        <button class="btn button">View Some Art</button>
+    </section>
+    <section class="gallery">
+        
+    </section>
+{% endblock %}

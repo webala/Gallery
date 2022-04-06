@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128&family=Rubik+Glitch&display=swap');
+body {
+    --text-primary: #05386B ;
+    --text-socondary: #EDF5E1;
+    --background: #5CDB95;
+    --background-secondary: #379683;
+
+    background-color: var(--background);
+}
+.background-text {
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.background-text h1 {
+    font-size: 7em;
+    transform: rotate(-45deg);
+    font-family: 'Rubik Glitch', cursive;;
+    
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-primary);
+    padding: 20px 200px;
+    z-index: 2;
+}
+.logo a {
+    font-family: 'Libre Barcode 128', cursive;
+    font-size: 2em;
+}
+a {
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: 0.3s;
+    
+}
+
+i {
+    font-size: 1.5em;
+}
+
+
+
+.nav-options ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.nav-options ul li{
+    margin-left: 20px;
+}
+
+.overview {
+   margin: 15% 150px;
+}
+.introduction {
+    display: flex;
+    align-items: center;
+}
+
+.names {
+    color: var(--text-socondary);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    width: 400px;
+}
+
+.names h1, .names h3 {
+    font-size: 4em;
+    font-family: 'Rubik Glitch', cursive;
+    color: var(--text-primary);
+}
+
+.profile-pic {
+    width: 300px;
+    border-radius: 50%;
+    margin-right: 120px;
+}
+
+.social {
+    position: absolute;
+    top: 45%;
+    right: 200px;
+    backdrop-filter: blur(20px);
+    border-radius: 16px;    
+    width: 100px
+}
+.social ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.social li {
+    margin: 20px 0;
+}
+
+.social i {
+    font-size: 3em;
+    transition: 0.3s;   
+}
+.social i:hover {
+    color: var(--text-socondary);
+}
