@@ -28,7 +28,10 @@
             </div>
         </div>
     </section>
-    <section class="gallery">
+        <section class="gallery">
+    {% for user in users %}
+    <p>{{user.username}}</p>
+    {% endfor %}
 
     </section>
 {% endblock %}

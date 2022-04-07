@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <!--Iconscout icons-->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <title>Flask blog</title>
+    <title>Gallery</title>
 </head>
 <body>
     <header class="site-header">
@@ -42,6 +42,16 @@
             <h1>Kagima Arts</h1>
         </div>
     </div>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
     {% block content %}
     
     {% endblock %}

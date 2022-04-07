@@ -5,8 +5,8 @@ from .config import Config
 
 
 db = SQLAlchemy()
-login_manager = LoginManager()
 
+login_manager = LoginManager()
 
 def create_app(config_class=Config):
     app = Flask(__name__)

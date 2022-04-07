@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="introduction">
+        <img src="{{ profile_picture }}" alt="profile_picture" class="profile-pic">
+        <div class="names">
+            <h1>{{user.username}}</h1>
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+            <p>{{user.email}}</p>
+            <button class="btn"><i class="uil uil-pen"></i> Edit profile picture.</button>
+        </div>
+    </div>
+
+    <div>
+        <form action="" class="edit-profile-picture">
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                {{form.new_picture.label(class="form-control-label")}}
+                <br>
+                {% if form.new_picture.errors %}
+                    {% for error in form.new_picture.errors %}
+                        <span class="text-muted text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {{form.new_picture(class='form-control form-control-sm')}}
+            </div>
+            <div class="form-group mt-4">
+                {{ form.submit(class="btn") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
