@@ -8,26 +8,78 @@
             <h1>{{user.username}}</h1>
             <h3>{{user.first_name}} {{user.last_name}}</h3>
             <p>{{user.email}}</p>
-            <button class="btn"><i class="uil uil-pen"></i> Edit profile picture.</button>
+            <button class="btn" onclick="toggleForm()"><i class="uil uil-pen"></i> Edit profile picture.</button>
         </div>
     </div>
 
-    <div>
-        <form action="" class="edit-profile-picture">
-            {{form.hidden_tag()}}
+    <div class="d-none edit-profile" id="edit-profile-picture">
+        <form action="" class="edit-profile-picture" method="POST" enctype="multipart/form-data">
+            {{profile_picture_form.hidden_tag()}}
             <div class="form-group">
-                {{form.new_picture.label(class="form-control-label")}}
+                {{profile_picture_form.new_picture.label(class="form-control-label")}}
                 <br>
-                {% if form.new_picture.errors %}
-                    {% for error in form.new_picture.errors %}
+                {% if profile_picture_form.new_picture.errors %}
+                    {% for error in profile_picture_form.new_picture.errors %}
                         <span class="text-muted text-danger">{{error}}</span>
                     {% endfor %}
                 {% endif %}
 
-                {{form.new_picture(class='form-control form-control-sm')}}
+                {{profile_picture_form.new_picture(class='form-control form-control-sm')}}
             </div>
             <div class="form-group mt-4">
-                {{ form.submit(class="btn") }}
+                {{ profile_picture_form.submit(class="btn") }}
+            </div>
+        </form>
+    </div>
+    <div class="upload-art">
+        <form action="" class="edit-profile-picture" method="POST" enctype="multipart/form-data">
+            {{artwork_form.hidden_tag()}}
+            <div class="form-group">
+                {{artwork_form.art_work.label(class="form-control-label")}}
+                <br>
+                {% if artwork_form.art_work.errors %}
+                    {% for error in artwork_form.art_work.errors %}
+                        <span class="text-muted text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {{artwork_form.art_work(class='form-control form-control-sm')}}
+            </div>
+            <div class="form-group">
+                {{artwork_form.name.label(class="form-control-label")}}
+                <br>
+                {% if artwork_form.name.errors %}
+                    {% for error in artwork_form.name.errors %}
+                        <span class="text-muted text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {{artwork_form.name(class='form-control form-control-sm')}}
+            </div>
+            <div class="form-group">
+                {{artwork_form.description.label(class="form-control-label")}}
+                <br>
+                {% if artwork_form.description.errors %}
+                    {% for error in artwork_form.description.errors %}
+                        <span class="text-muted text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {{artwork_form.description(class='form-control form-control-sm')}}
+            </div>
+            <div class="form-group">
+                {{artwork_form.on_display.label(class="form-control-label")}}
+                <br>
+                {% if artwork_form.on_display.errors %}
+                    {% for error in artwork_form.on_display.errors %}
+                        <span class="text-muted text-danger">{{error}}</span>
+                    {% endfor %}
+                {% endif %}
+
+                {{artwork_form.on_display(class='form-control form-control-sm')}}
+            </div>
+            <div class="form-group mt-4">
+                {{ artwork_form.submit(class="btn") }}
             </div>
         </form>
     </div>

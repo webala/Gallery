@@ -215,3 +215,23 @@ form {
     border-radius: 10px;
     border: 1px solid var(--background-secondary)
 }
+
+.flash-message {
+    position: absolute;
+    left: 35%;
+    top: 10%;
+    transition: 0.3s ease-in;
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+}
+.dashboard .edit-profile {
+    transform: translateY(100px);
+    opacity: 0;
+    transition-duration: 1s;
+    transition-delay: 0.3s;
+    transition-property: transform, opacity;
+}
+.dashboard .edit-profile{
+    transform: translateY(0);
+    opacity: 1;   
+}

@@ -1,3 +1,4 @@
+from email.policy import default
 from app import db, login_manager
 from flask_login import UserMixin
 from werkzeug import security 
@@ -23,3 +24,11 @@ class User(db.Model, UserMixin):
 
     def check_password_hash(self, password):
         return security.check_password_hash(self.password, password)
+
+
+class ArtWork(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    art_work = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(20), unique=True, nullable=False)
+    description = db.Column(db.String(20), nullable=True)
+    on_display = db.Column(db.Boolean, default=True, nullable=True)
