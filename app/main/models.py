@@ -32,3 +32,4 @@ class ArtWork(db.Model):
     name = db.Column(db.String(20), unique=True, nullable=False)
     description = db.Column(db.String(20), nullable=True)
     on_display = db.Column(db.Boolean, default=True, nullable=True)
+    is_landscape = db.Column(db.Boolean)

@@ -67,17 +67,7 @@
 
                 {{artwork_form.description(class='form-control form-control-sm')}}
             </div>
-            <div class="form-group">
-                {{artwork_form.on_display.label(class="form-control-label")}}
-                <br>
-                {% if artwork_form.on_display.errors %}
-                    {% for error in artwork_form.on_display.errors %}
-                        <span class="text-muted text-danger">{{error}}</span>
-                    {% endfor %}
-                {% endif %}
-
-                {{artwork_form.on_display(class='form-control form-control-sm')}}
-            </div>
+            
             <div class="form-group mt-4">
                 {{ artwork_form.submit(class="btn") }}
             </div>

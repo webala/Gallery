@@ -29,5 +29,4 @@ class AddArtWork(FlaskForm):
     art_work = FileField('Choose Art to Upload', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     name = StringField('Name Your Art', validators=[DataRequired(), Length(min=2, max=20)])
     description = StringField('Describe Your Art', validators=[DataRequired(), Length(min=2, max=20)])
-    on_display = BooleanField('Add Art Work to Display?')
     submit = SubmitField('All Done')
