@@ -1,7 +1,7 @@
 from tokenize import String
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 
 
@@ -23,10 +23,10 @@ class LoginForm(FlaskForm):
 
 class ChangeProfilePictureForm(FlaskForm):
     new_picture = FileField('New picture', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
-    submit = SubmitField('Change Profile Picture')
+    change_picture = SubmitField('Change Profile Picture')
 
 class AddArtWork(FlaskForm):
     art_work = FileField('Choose Art to Upload', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
     name = StringField('Name Your Art', validators=[DataRequired(), Length(min=2, max=20)])
-    description = StringField('Describe Your Art', validators=[DataRequired(), Length(min=2, max=20)])
-    submit = SubmitField('All Done')
+    description = TextAreaField('Describe Your Art', validators=[DataRequired(), Length(min=2, max=100)])
+    add_art = SubmitField('All Done')

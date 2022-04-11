@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+128&family=Rubik+Glitch&family=Rubik+Wet+Paint&display=swap');
-body {
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Rubik+Wet+Paint&display=swap');body {
     --text-primary: #05386B ;
     --text-secondary: #EDF5E1;
     --background: #5CDB95;
     --background-secondary: #379683;
 
     background-color: var(--background);
+    max-width: 100vw;
 }
 
 ::-webkit-scrollbar {
@@ -18,6 +18,13 @@ body {
     background: var(--text-primary);
     border-radius: 2em;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .background-text {
     height: 100vh;
     width: 100vw;
@@ -33,16 +40,44 @@ body {
     font-family: 'Rubik Glitch', cursive;;
     
 }
-
-.nav-bar {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text-primary);
-    padding: 20px 200px;
-    z-index: 2;
+.background-text img {
+    border-radius: 50%;
+    opacity: 0.7;
 }
+
+section {
+    height: 100vh;
+    padding: 35px 200px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: 0.3s ease;
+}
+
+header.sticky {  
+    backdrop-filter: blur(20px);
+}
+
+header .nav-bar {
+    position: relative;
+    display: flex;
+    color: var(--text-primary);
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 200px;
+}
+
 .logo a {
-    font-family: 'Libre Barcode 128', cursive;
+    font-family: 'Rubik Wet Paint', cursive;
     font-size: 2em;
 }
 a {
@@ -58,6 +93,11 @@ i {
 
 
 
+.nav-options, .logo {
+    display: flex;
+    align-items: center;
+}
+
 .nav-options ul {
     display: flex;
     list-style: none;
@@ -68,14 +108,58 @@ i {
     margin-left: 20px;
 }
 
-.overview {
-   margin: 10% 150px;
+.nav-options ul li a {
+    font-size: 1.5em;
+    font-weight: 500;
 }
+.overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .introduction {
     display: flex;
     align-items: center;
+    transition: 0.3s ease;
+    transition-property: top, left;
 }
 
+.introduction li {
+    list-style: none;
+}
+
+.introduction.on-scroll {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 20px;
+    top: 300px;
+    align-items: flex-start;
+}
+
+.introduction.on-scroll img {
+    width: 75px;
+}
+
+.introduction.on-scroll .names {
+    width: fit-content;
+}
+
+.introduction.on-scroll .names h1, .introduction.on-scroll .names h3, .introduction.on-scroll .names p{
+    font-size: 1.2em;
+}
+
+.introduction.on-scroll .names p {
+    display: none;
+}
+
+.introduction.on-scroll ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 .names {
     color: var(--text-secondary);
     backdrop-filter: blur(20px);
@@ -87,6 +171,12 @@ i {
     font-size: 4em;
     font-family: 'Rubik Glitch', cursive;
     color: var(--text-primary);
+}
+
+.names p{
+    font-size: 2em;
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 .profile-pic {
@@ -126,8 +216,8 @@ i {
     align-items: center;
     color: var(--text-primary);
     font-size: 2em;
-    font-weight: 700;
-    margin: 70px 0;
+    font-weight: 500;
+    margin-top: 70px;
 }
 
 .view-art div {
@@ -181,8 +271,8 @@ form {
     color: var(--text-secondary);
 }
 
-.dashboard {
-    margin: 20px 150px;
+section.dashboard {
+    padding-top: 200px;
 }
 
 .dashboard .names {
@@ -193,27 +283,42 @@ form {
 
     font-family: 'Rubik Wet Paint', cursive;
 }
-.names button {
+.names .btn {
     background-color: var(--text-primary);
     color: var(--text-secondary);
     border-radius: 20px;
     transition: 0.3s ease;
 }
 
-.names button:hover {
+.names .btn:hover {
     background: var(--background-secondary);
     transform: scale(1.1);
 }
-.names button i {
+.names .btn i {
     color: var(--text-secondary);
     margin: 0 10px;
 }
+
+.edit-profile {
+    padding-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .edit-profile-picture .btn{
  border-radius: 16px;
+ background-color: var(--text-primary);
+}
+.edit-profile-picture h1 {
+    color: var(--text-primary);
 }
 .form-control-sm {
     border-radius: 10px;
     border: 1px solid var(--background-secondary)
+}
+.form-group textarea {
+    width: 400px;
 }
 
 .flash-message {
@@ -224,14 +329,197 @@ form {
     backdrop-filter: blur(20px);
     border-radius: 16px;
 }
-.dashboard .edit-profile {
-    transform: translateY(100px);
-    opacity: 0;
-    transition-duration: 1s;
-    transition-delay: 0.3s;
-    transition-property: transform, opacity;
+
+.gallery {
+    margin: 0 70px;
+    padding: 200px 0;
+    
 }
-.dashboard .edit-profile{
-    transform: translateY(0);
-    opacity: 1;   
+
+.portraits, .landscapes {
+    display: grid;
+    grid-template-columns: repeat(3, 512px);  
+    gap: 100px 0;
+}
+.landscapes {
+    grid-template-columns: repeat(2, 700px);
+    margin: 100px 0;
+    padding: 100px 0;
+}
+.art {
+    align-self: center;
+    justify-self: center;
+    box-shadow: 10px -10px var(--text-primary);
+    border-radius: 10px;
+}
+
+.art img {
+    border-radius: 10px;
+}
+
+#about {
+    margin: 0 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
+}
+
+.about {
+    color: var(--text-primary);
+    
+    padding: 50px 20px;
+    backdrop-filter: blur(30px);
+    border-radius: 10px;
+   
+}
+
+.about h1 {
+    font-weight: 700;
+}
+
+.about p {
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+section.gallery {
+    height: fit-content;
+}
+
+div.nav {
+    position: fixed;
+    top: 200px;
+    right: 30;
+    border-left: 1px solid var(--text-primary);
+    backdrop-filter: blur(5px);
+}
+
+.dashboard-nav li {
+    margin: 20px 0;
+    list-style: none;
+    padding-top: 20px;
+}
+
+.dashboard-nav li i{
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.dashboard-nav li a {
+    font-weight: 600;
+    font-size: 1.4em;
+}
+
+.upload-art {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dashboard {
+    margin: 0 0;
+}
+
+section.dashboard {
+    height: fit-content;
+}
+
+.display-icon {
+    position: absolute;
+    font-weight: 500;
+    font-size: 1.7em;
+
+}
+
+@media screen and (max-width: 1340px) {
+    .social {
+        right: 100px;
+    }
+
+    .view-art div {
+        width: 30%;
+    }
+
+    header .nav-bar {
+        padding: 0 150px;
+    }
+
+    .introduction.on-scroll {
+        display: none;
+    }
+
+    .portraits {
+        grid-template-columns: repeat(2, 512px);
+    }
+
+    .landscapes {
+        grid-template-columns: repeat(2, 600px);
+
+    }
+    #collection {
+        padding: 35px 100px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .social {
+        right: 20px;
+    }
+
+    .view-art div {
+        width: 40%;
+    }
+
+    header .nav-bar {
+        padding: 0 100px;
+    }
+    .landscapes {
+        grid-template-columns: repeat(1, 700px);
+    }
+    #about {
+        margin: 0 70px;
+    }
+
+    form {
+        margin: 0 120px;
+    }
+
+    .form-group input {
+        width: 200px;
+    }
+
+}
+@media screen and (max-width: 785px){
+    .social {
+        left: 20px;
+    }
+    .introduction {
+        padding-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .profile-pic {
+        width: 150px;
+    }
+
+    .names {
+        margin-top: 50px;
+    }
+    .view-art div {
+        width: 60%;
+    }
+    .portraits {
+        grid-template-columns: repeat(1, 512px);
+    }
+    #about {
+        margin: 0 20px;
+    }
+    form {
+        margin: 0 60px;
+    }
+    .form-group textarea {
+        width: 200px;
+    }
 }

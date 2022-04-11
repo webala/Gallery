@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="dashboard">
+<section class="dashboard">
+    <div class="nav">
+        <nav class="dashboard-nav">
+            
+        </nav>
+    </div>
     <div class="introduction">
         <img src="{{ profile_picture }}" alt="profile_picture" class="profile-pic">
         <div class="names">
             <h1>{{user.username}}</h1>
             <h3>{{user.first_name}} {{user.last_name}}</h3>
             <p>{{user.email}}</p>
-            <button class="btn" onclick="toggleForm()"><i class="uil uil-pen"></i> Edit profile picture.</button>
+            <a class="btn" href="#edit-profile-picture"> Edit profile picture.</a>
+            <ul>
+                <li><a href="#edit-profile-picture"><i class="uil uil-pen"></i> Edit profile</a> </li>
+                <li><a href="#upload-art"><i class="uil uil-upload"></i> Upload Some Work </a> </li>
+                <li><a href="#collection"><i class="uil uil-layers"></i> Collection</a> </li>
+            </ul>
         </div>
     </div>
-
-    <div class="d-none edit-profile" id="edit-profile-picture">
+</section>
+    <section class="edit-profile" id="edit-profile-picture">
+        
         <form action="" class="edit-profile-picture" method="POST" enctype="multipart/form-data">
+            <h1>Change Profile Picture</h1>
             {{profile_picture_form.hidden_tag()}}
             <div class="form-group">
                 {{profile_picture_form.new_picture.label(class="form-control-label")}}
@@ -27,12 +39,13 @@
                 {{profile_picture_form.new_picture(class='form-control form-control-sm')}}
             </div>
             <div class="form-group mt-4">
-                {{ profile_picture_form.submit(class="btn") }}
+                {{ profile_picture_form.change_picture(class="btn") }}
             </div>
         </form>
-    </div>
-    <div class="upload-art">
-        <form action="" class="edit-profile-picture" method="POST" enctype="multipart/form-data">
+    </section>
+    <section class="upload-art" id="upload-art">
+        <form action="/add_art" class="edit-profile-picture" method="POST" enctype="multipart/form-data">
+            <h1>Upload Some Art</h1>
             {{artwork_form.hidden_tag()}}
             <div class="form-group">
                 {{artwork_form.art_work.label(class="form-control-label")}}
@@ -69,10 +82,49 @@
             </div>
             
             <div class="form-group mt-4">
-                {{ artwork_form.submit(class="btn") }}
+                {{ artwork_form.add_art(class="btn") }}
             </div>
         </form>
-    </div>
-</div>
+    </section>
+
+    <section id="collection">
+        <div class="portraits">
+            
+            {% for art in artwork if art.orientation == 'portrait' %}
+
+
+            
+                    <div class="art">
+                        <span class="display-icon">
+                            {% if art.on_display == True %}
+                            <a href="{{ url_for('main.set_display', art_id=art.id)}}"><i class="uil uil-eye-slash" class="set-display" data-ID="{{art.id}}"></i></a>
+                            {% else %}
+                            <a href="{{ url_for('main.set_display', art_id=art.id)}}"><i class="uil uil-eye" class="set-display" data-ID="{{art.id}}"></i></a>
+                            {% endif %}
+                        </span>
+                        <img src="/static/images/artwork/{{art.art_work}}" alt="image">
+                    </div>
+                
+            {% endfor %}
+        </div>
+
+        <div class="landscapes">
+            {% for art in artwork if art.orientation == 'landscape' %}
+            
+                    <div class="art">
+                        <span class="display-icon">
+                            {% if art.on_display == True %}
+                            <a href="{{ url_for('main.set_display', art_id=art.id)}}"><i class="uil uil-eye-slash" class="set-display" data-ID="{{art.id}}"></i></a>  
+                            {% else %}
+                            <a href="{{ url_for('main.set_display', art_id=art.id)}}"><i class="uil uil-eye" class="set-display" data-ID="{{art.id}}"></i></a>
+                            {% endif %}
+                        </span>
+                        <img src="/static/images/artwork/{{art.art_work}}" alt="image">
+                    </div>
+                
+            {% endfor %}
+        </div>
+    </section>
+
 
 {% endblock %}

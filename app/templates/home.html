@@ -4,7 +4,7 @@
 
 
 {% block content %}
-    <section class="overview">
+    <section class="overview" id="overview">
 
         <div class="social">
             <ul>
@@ -18,20 +18,54 @@
             <div class="names">
                 <h1>James</h1>
                 <h3>Kagima</h3>
-                <p>Professional Artist</p>   
+                <p>Welcome to my Art Gallery</p>   
             </div>
         </div>
         <div class="view-art">
             <div>
                 <p>View some art</p>
-                <a href="#" class="btn"><i class="uil uil-angle-down"></i></a>
+                <a href="#gallery" class="btn"><i class="uil uil-angle-down"></i></a>
             </div>
         </div>
     </section>
-        <section class="gallery">
-    {% for user in users %}
-    <p>{{user.username}}</p>
-    {% endfor %}
+    <section class="gallery" id="gallery">
 
+        <div class="portraits">
+            
+            {% for art in artwork if art.orientation == 'portrait' and art.on_display %}
+            
+                    <div class="art">
+                        <img src="/static/images/artwork/{{art.art_work}}" alt="image">
+                    </div>
+                
+            {% endfor %}
+        </div>
+
+        <div class="landscapes">
+            {% for art in artwork if art.orientation == 'landscape' and art.on_display %}
+            
+                    <div class="art">
+                        <img src="/static/images/artwork/{{art.art_work}}" alt="image">
+                    </div>
+                
+            {% endfor %}
+        </div>
+
+    </section>
+    <section id="about">
+        <div class="about">
+            <h1>About me</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum libero ducimus nam beatae impedit, soluta assumenda dignissimos sapiente blanditiis repudiandae, eius iusto, exercitationem id quis. Rerum iste facere necessitatibus fuga? Beatae ea, adipisci repudiandae earum quos quibusdam neque quasi doloremque aliquam suscipit non, similique obcaecati! Voluptates vero culpa quo reprehenderit nobis asperiores quas debitis incidunt, eveniet saepe. Fuga excepturi quibusdam soluta ab molestiae. Maiores, obcaecati ut labore, ipsam, quia placeat expedita aut asperiores sint vel numquam alias autem voluptate nobis saepe dolore quas quo corrupti reprehenderit quidem earum quaerat ipsum. Fuga tempora amet dolorem eaque aspernatur ullam rem, deleniti sapiente?</p>
+            <div>
+                <i class="uil uil-envelope-edit"></i>
+                <i class="uil uil-whatsapp"></i>
+                <i class="uil uil-facebook-f"></i>
+                <i class="uil uil-twitter"></i>
+                <i class="uil uil-instagram"></i>
+                <i class="uil uil-coffee"></i>
+            </div>
+        </div>
+        
+        
     </section>
 {% endblock %}
